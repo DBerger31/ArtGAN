@@ -1,0 +1,9 @@
+#Virtual Environment
+venv/
+
+# Flask
+instance/*
+__pycache__/
+
+# CSV files
+*.csv/
