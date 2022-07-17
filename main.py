@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import Sequential
-from keras.layers import Dense, Conv2D, Flatten
+from keras.layers import Dense, Conv2D, Flatten, LeakyReLU, BatchNormalization
 import matplotlib.pyplot as plt
 import numpy as np
 # Testing Dataset
@@ -32,10 +32,16 @@ class Discriminator():
     def __init__(self):
         # super(self).__init__
         self.model = keras.Sequential([
-            Conv2D(64, kernel_size=3, activation='relu', input_shape=(28,28,1)),
-            Conv2D(32, kernel_size=3, activation='relu'),
+            Conv2D(64, kernel_size=3, strides=2, padding='same', input_shape=(28,28,2)),
+            LeakyReLU(alpha=0.01),
+            Conv2D(64, kernel_size=3, strides=2, padding='same'),
+            BatchNormalization(),
+            LeakyReLU(alpha=0.01),
+            Conv2D(128, kernel_size=3, strides=2, padding='same'),
+            BatchNormalization(),
+            LeakyReLU(alpha=0.01),
             Flatten(),
-            Dense(10, activation='softmax')]
+            Dense(1, activation='sigmoid'),]
         )
         # self.conv1 = tf.keras.layers.Conv2D(64, kernel_size=3, activation='relu', input_shape=(28,28,1))
         # self.conv2 = tf.keras.layers.Conv2D(32, kernel_size=3, activation='relu')
