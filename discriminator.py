@@ -8,6 +8,7 @@ import numpy as np
 from numpy import expand_dims
 # Testing Dataset
 from keras.datasets import mnist
+import random
 
 '''
 Functional API implementation which specifices the layer(arg1)(arg2)
@@ -19,7 +20,7 @@ arg2: output
 def discriminator(img_shape, n_labels):
 
     label = Input(shape=(1,))
-	  # embedded layer for creating a vector of 50 for each label that act as weights for each label
+	# embedded layer for creating a vector of 50 for each label that act as weights for each label
     # 50 being the standard for CGANs
     # TODO: POSSIBLY change the randomness of vector
     label_input = Embedding(n_labels, 50)(label)
@@ -48,11 +49,40 @@ def discriminator(img_shape, n_labels):
 
     return model
 
+# Parameters
+img_shape = (28,28,1)
+n_labels = 10
+
+disc = discriminator(img_shape, n_labels)
+disc.summary()
+
 def load_mnist():
-    (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+    (x_train, y_train), (_, _) = keras.datasets.mnist.load_data()
     x_train = x_train.astype('float32')
     x_train = (x_train - 127.5) / 127.5
-    return [x_train, y_train]
+    return x_train, y_train
+
+# def generate_real_samples(dataset, n_samples):
+# 	# choose random instances
+# 	ix = random.randint(0, 60000, n_samples)
+# 	# select images
+# 	x = dataset[ix]
+# 	# generate class labels
+# 	y = np.ones((n_samples, 1))
+# 	return x, y
+
+x_train,y_train= load_mnist()
+
+print("THIS IS")
+print(x_train.shape[0])
+
+half = x_train.shape[0] / 128
+# x_d, y_d = generate_real_samples(x_train, 128)
+
+for epoch in range(100):
+    for batch in range(128):
+        loss, _ = disc.train_on_batch(x_train,y_train)
+
 
 
 # def load_mnist():
@@ -66,7 +96,6 @@ def load_mnist():
 # 	X = (X - 127.5) / 127.5
 # 	return [X, trainy]
 
-x_train,y_train= load_mnist()
 # print(x.shape,y.shape)
 
 batch_size = 64
