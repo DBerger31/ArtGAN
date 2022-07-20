@@ -1,0 +1,50 @@
+{% extends 'layouts.html' %}
+
+{%block content%}
+<!-- <h1>Home page</h1> -->
+
+<!-- CAROUSEL image slideshow -->
+<p class="pt-3"></p>
+<div class="container-lg">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-cat-rob-hans.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://i.pinimg.com/originals/8e/99/69/8e9969e9e048661aa9beab4c0bfea553.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://m.media-amazon.com/images/I/A1AQSOLmbqL._AC_SL1500_.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- CARD -->
+<p class="pb-3"></p>
+<div class="card text-center">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Create your own</h5>
+      <p class="card-text">Choose a style and generate a brand new work of art.</p>
+      <a href="#" class="btn btn-primary">Start</a>
+    </div>
+    <div class="card-footer text-muted">
+    </div>
+  </div>
+  
+
+<script src = "{{url_for('static',filename='main.js')}}"></script>
+
+
+{%endblock content%}
