@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Counting the number of files in a folder
-dataset_path = "Genres/Abstract"
+dataset_path = "./Genres/Abstract"
 count = 0
 for path in os.listdir(dataset_path):
     # check if current path is a file
@@ -65,5 +65,7 @@ def plotImages(images_arr):
 
 print(train_batches.class_indices)
 imgs, labels = train_batches[0]
+print(imgs.shape)
+print(labels.shape)
 print(labels[:5])
 plotImages(imgs)
