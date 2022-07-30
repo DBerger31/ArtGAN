@@ -136,15 +136,6 @@ def load_real_samples():
   return [X, trainy]
 
 
-<<<<<<< HEAD
-=======
-# # select real samples
-# pick a batch of random real samples to train the GAN
-#In fact, we will train the GAN on a half batch of real images and another 
-#half batch of fake images. 
-#For each real image we assign a label 1 and for fake we assign label 0. 
->>>>>>> 0cd2354e95973122498e139d69df5447ad3b5a5a
-
 '''
 Randomly picks some of the real images to train the GAN
 real images are assigned a label of 1
