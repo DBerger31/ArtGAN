@@ -14,6 +14,9 @@ from numpy.random import randint
 from keras.models import load_model
 import numpy as np
 
+import time
+
+start_time = time.time()
 
 # Loads our custom dataset of paintings and their respective labels
 def load_custom_data():
@@ -213,7 +216,7 @@ g_model = define_generator(latent_dim)
 gan_model = define_gan(g_model, d_model)
 dataset = load_real_samples()
 
-train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=1)
+# train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200)
 
 # Load the trained model and generate a few images
 from numpy import asarray
@@ -229,13 +232,19 @@ def save_plot(X,n):
   for i in range(n*n):
     plt.axis('off')
     plt.subplot(n,n,i+1)
-    plt.imshow(X[i,:,:,0])
+    plt.imshow(X[i,:,:,:])
   plt.show()
 
 [inputs,labels] = generate_latent_points(latent_dim,100)
 labels = np.asarray([x for _ in range(10) for x in range(10)])
 model = load_model('mod.h5')
 X = model.predict([inputs,labels])
+X = (X + 1) / 2.0
+X = (X*255).astype(np.uint8)
 save_plot(X,10)
+
+elapsed = (time.time() - start_time)
+time = time.strftime("%Hh%Mm%Ss", time.gmtime(elapsed))
+print("Process finished --- %s --- " % (time))
 
 
