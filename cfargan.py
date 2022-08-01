@@ -2,7 +2,7 @@ from numpy import zeros
 from numpy import ones
 from numpy.random import randn
 from numpy.random import randint
-from tensorflow.keras.datasets.mnist import load_data
+from tensorflow.keras.datasets.cifar10 import load_data
 from tensorflow.keras.optimizers import Adam
 from keras.models import Model
 from keras.layers import Input, Dense, Reshape, Flatten, Conv2D, Conv2DTranspose, LeakyReLU, Dropout, Embedding, Concatenate
@@ -26,13 +26,15 @@ def load_custom_data():
 
 # trainX, trainy = load_custom_data() # shape of (62145, 64, 64, 3) and (62145,)
 
-# # plot the first 25 images of our dataset 
-# for i in range(25):
-# 	plt.subplot(5, 5, 1 + i)
-# 	plt.axis('off')
-# 	plt.text(0.5,0.5,trainy[i],horizontalalignment='center', verticalalignment='center')
-# 	plt.imshow(trainX[i])
-# plt.show()
+(trainX, trainy), (_, _) = load_data()
+
+# plot the first 25 images of our dataset 
+for i in range(25):
+	plt.subplot(5, 5, 1 + i)
+	plt.axis('off')
+	plt.text(0.5,0.5,trainy[i],horizontalalignment='center', verticalalignment='center')
+	plt.imshow(trainX[i])
+plt.show()
 
 
 ''' 
@@ -40,7 +42,7 @@ Creates the discriminator model using keras functional API
 Arg1: Shape of the discriminator input
 Arg2: Number of classes the dataset has
 '''
-def define_discriminator(in_shape=(64,64,3), n_classes=10):
+def define_discriminator(in_shape=(32,32,3), n_classes=10):
 	
 	in_label = Input(shape=(1,)) # the label input
 
@@ -87,19 +89,19 @@ def define_generator(latent_dim, n_classes=10):
     # embedding layer added to create a vector of size 50 for each label we have (random values that acts as another set of weights)
 	li = Embedding(n_classes, 50)(in_label) 
     
-	n_nodes = 16 * 16  # we need this number to be a factor of the image dimensions
+	n_nodes = 8 * 8  # we need this number to be a factor of the image dimensions
 	li = Dense(n_nodes)(li)
-	li = Reshape((16, 16, 1))(li)
+	li = Reshape((8, 8, 1))(li)
     
     
 	# latent vector input with dimension of 100, which is standard
 	in_lat = Input(shape=(latent_dim,)) 
     
 
-	n_nodes = 128 * 16 * 16
+	n_nodes = 128 * 8 * 8
 	gen = Dense(n_nodes)(in_lat) 
 	gen = LeakyReLU(alpha=0.2)(gen)
-	gen = Reshape((16, 16, 128))(gen) 
+	gen = Reshape((8, 8, 128))(gen) 
 	# merge image gen and label input
 	merge = Concatenate()([gen, li]) 
 
@@ -109,12 +111,12 @@ def define_generator(latent_dim, n_classes=10):
 	gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128
 	gen = LeakyReLU(alpha=0.2)(gen)
 	# output
-	out_layer = Conv2D(3, (16,16), activation='tanh', padding='same')(gen) #64x64x3
+	out_layer = Conv2D(3, (8,8), activation='tanh', padding='same')(gen) #64x64x3
 	# define model
 	model = Model([in_lat, in_label], out_layer)
 	return model   # Model is not compiled becuase it is only trained within the GAN
 
-# test_gen = define_generator(100, n_classes=10)
+test_gen = define_generator(100, n_classes=10)
 
 def define_gan(g_model, d_model):
 	d_model.trainable = False  # discriminator is trained seperately
@@ -132,7 +134,7 @@ def define_gan(g_model, d_model):
 	return model
 
 def load_real_samples():
-  trainX, trainy = load_custom_data()
+  (trainX, trainy), (_,_) = load_data()
   X = trainX.astype('float32')
   # scale from [0,255] to [-1,1]
   X = (X - 127.5) / 127.5
@@ -216,9 +218,15 @@ g_model = define_generator(latent_dim)
 gan_model = define_gan(g_model, d_model)
 dataset = load_real_samples()
 
-train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=2)
+train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=20)
 
 # Load the trained model and generate a few images
+from numpy import asarray
+from numpy.random import randn
+from numpy.random import randint
+from keras.models import load_model
+import numpy as np
+import matplotlib as pyplot
 
 model = load_model('mod.h5',compile=False)
 
@@ -235,12 +243,10 @@ model = load_model('mod.h5')
 X = model.predict([inputs,labels])
 X = (X + 1) / 2.0
 X = (X*255).astype(np.uint8)
+save_plot(X,10)
 
 elapsed = (time.time() - start_time)
 time = time.strftime("%Hh%Mm%Ss", time.gmtime(elapsed))
 print("Process finished --- %s --- " % (time))
-
-save_plot(X,10)
-
 
 
