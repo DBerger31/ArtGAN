@@ -58,7 +58,7 @@ def define_discriminator(in_shape=(64,64,3), n_classes=10):
 	fe = Conv2D(128, (3,3), strides=(2,2), padding='same')(merge) 
 	fe = LeakyReLU(alpha=0.2)(fe)
  
-	fe = Conv2D(128,(3,3),strides=(2,2),padding='same')(merge) 
+	fe = Conv2D(128,(3,3),strides=(2,2),padding='same')(fe) 
 	fe = LeakyReLU(alpha=0.2)(fe)
 	
 	# flattens multidimensional input into a single dimension
