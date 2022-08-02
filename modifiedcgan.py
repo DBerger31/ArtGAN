@@ -58,7 +58,10 @@ def define_discriminator(in_shape=(64,64,3), n_classes=10):
     fe = Conv2D(128, (3,3), strides=(2,2), padding='same')(merge) 
     fe = LeakyReLU(alpha=0.2)(fe)
 
-    fe = Conv2D(256,(3,3),strides=(2,2),padding='same')(merge) #increased the number of filters from 128 -> 258
+    fe = Conv2D(128,(3,3),strides=(2,2),padding='same')(fe) #increased the number of filters from 128 -> 258
+    fe = LeakyReLU(alpha=0.2)(fe)
+
+    fe = Conv2D(128,(3,3),strides=(2,2),padding='same')(fe) #increased the number of filters from 128 -> 258
     fe = LeakyReLU(alpha=0.2)(fe)
 
     # flattens multidimensional input into a single dimension
@@ -87,19 +90,19 @@ def define_generator(latent_dim, n_classes=10):
     # embedding layer added to create a vector of size 50 for each label we have (random values that acts as another set of weights)
     li = Embedding(n_classes, 50)(in_label) 
 
-    n_nodes = 16 * 16  # we need this number to be a factor of the image dimensions
+    n_nodes = 8 * 8  # we need this number to be a factor of the image dimensions
     li = Dense(n_nodes)(li)
-    li = Reshape((16, 16, 1))(li)
+    li = Reshape((8, 8, 1))(li)
 
 
     # latent vector input with dimension of 100, which is standard
     in_lat = Input(shape=(latent_dim,)) 
 
 
-    n_nodes = 128 * 16 * 16
+    n_nodes = 128 * 8 * 8
     gen = Dense(n_nodes)(in_lat) 
     gen = LeakyReLU(alpha=0.2)(gen)
-    gen = Reshape((16, 16, 128))(gen) 
+    gen = Reshape((8, 8, 128))(gen) 
     # merge image gen and label input
     merge = Concatenate()([gen, li]) 
 
@@ -108,9 +111,12 @@ def define_generator(latent_dim, n_classes=10):
 
     gen = Conv2DTranspose(64, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 , decreased filter from 128 -> 64
     gen = LeakyReLU(alpha=0.2)(gen)
+
+    gen = Conv2DTranspose(32, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 , decreased filter from 128 -> 64
+    gen = LeakyReLU(alpha=0.2)(gen)
     
     # output
-    out_layer = Conv2D(3, (16,16), activation='tanh', padding='same')(gen) #64x64x3
+    out_layer = Conv2D(3, (8,8), activation='tanh', padding='same')(gen) #64x64x3
     # define model
     model = Model([in_lat, in_label], out_layer)
     return model   # Model is not compiled becuase it is only trained within the GAN
@@ -221,7 +227,7 @@ g_model = define_generator(latent_dim)
 gan_model = define_gan(g_model, d_model)
 dataset = load_real_samples()
 
-train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=10)
+train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=200)
 
 # Load the trained model and generate a few images
 from numpy import asarray
