@@ -40,7 +40,7 @@ Creates the discriminator model using keras functional API
 Arg1: Shape of the discriminator input
 Arg2: Number of classes the dataset has
 '''
-def define_discriminator(in_shape=(64,64,3), n_classes=10):
+def define_discriminator(in_shape=(28,28,3), n_classes=10):
 	
     in_label = Input(shape=(1,)) # the label input
 
@@ -56,9 +56,6 @@ def define_discriminator(in_shape=(64,64,3), n_classes=10):
     merge = Concatenate()([in_image, li]) # merges the 2 input layers -> 64 x 64 x 4
 
     fe = Conv2D(128, (3,3), strides=(2,2), padding='same')(merge) 
-    fe = LeakyReLU(alpha=0.2)(fe)
-
-    fe = Conv2D(128,(3,3),strides=(2,2),padding='same')(fe) #increased the number of filters from 128 -> 258
     fe = LeakyReLU(alpha=0.2)(fe)
 
     fe = Conv2D(128,(3,3),strides=(2,2),padding='same')(fe) #increased the number of filters from 128 -> 258
@@ -90,19 +87,19 @@ def define_generator(latent_dim, n_classes=10):
     # embedding layer added to create a vector of size 50 for each label we have (random values that acts as another set of weights)
     li = Embedding(n_classes, 50)(in_label) 
 
-    n_nodes = 8 * 8  # we need this number to be a factor of the image dimensions
+    n_nodes = 7 * 7  # we need this number to be a factor of the image dimensions
     li = Dense(n_nodes)(li)
-    li = Reshape((8, 8, 1))(li)
+    li = Reshape((7, 7, 1))(li)
 
 
     # latent vector input with dimension of 100, which is standard
     in_lat = Input(shape=(latent_dim,)) 
 
 
-    n_nodes = 128 * 8 * 8
+    n_nodes = 128 * 7 * 7
     gen = Dense(n_nodes)(in_lat) 
     gen = LeakyReLU(alpha=0.2)(gen)
-    gen = Reshape((8, 8, 128))(gen) 
+    gen = Reshape((7, 7, 128))(gen) 
     # merge image gen and label input
     merge = Concatenate()([gen, li]) 
 
@@ -111,12 +108,9 @@ def define_generator(latent_dim, n_classes=10):
 
     gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 , decreased filter from 128 -> 64
     gen = LeakyReLU(alpha=0.2)(gen)
-
-    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 , decreased filter from 128 -> 64
-    gen = LeakyReLU(alpha=0.2)(gen)
     
     # output
-    out_layer = Conv2D(3, (8,8), activation='tanh', padding='same')(gen) #64x64x3
+    out_layer = Conv2D(3, (7,7), activation='tanh', padding='same')(gen) #64x64x3
     # define model
     model = Model([in_lat, in_label], out_layer)
     return model   # Model is not compiled becuase it is only trained within the GAN
@@ -160,6 +154,7 @@ def generate_real_samples(dataset, n_samples):
 	y = ones((n_samples, 1))
 	return [X, labels], y
 
+
 ''' 
 Creates noise for the generator to create images from
 Arg1: latent dimension size (usually 100)
@@ -175,6 +170,7 @@ def generate_latent_points(latent_dim, n_samples, n_classes=10):
 	# generate labels
 	labels = randint(0, n_classes, n_samples)
 	return [z_input, labels]
+ 
 
 '''
 Creates fake images to train the GAN
@@ -189,8 +185,8 @@ def generate_fake_samples(generator, latent_dim, n_samples):
 	y = zeros((n_samples, 1))  #
 	return [images, labels_input], y
 
-
-d_losses = [] # for plotting the losses
+# for plotting the losses
+d_losses = [] 
 g_losses = []
 
 '''
@@ -253,7 +249,6 @@ def plot_losses():
   plt.ylabel("Loss")
   plt.legend()
   plt.show()
-
 
 [inputs,labels] = generate_latent_points(latent_dim,100)
 labels = np.asarray([x for _ in range(10) for x in range(10)])
