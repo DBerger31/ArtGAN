@@ -10,8 +10,16 @@ import matplotlib
 matplotlib.use('Agg')
 
 from matplotlib import pyplot as plt
+import cv2
+# creates an super res object
+sr = cv2.dnn_superres.DnnSuperResImpl_create()
+path = "C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/FSRCNN_x4.pb"
 
-model = load_model('/Users/amy/Desktop/ArtGAN/web/ArtGAN/cgan_generator200.h5',compile=False)
+# read and creates the model
+sr.readModel(path)
+sr.setModel("fsrcnn", 4)
+
+model = load_model('C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/cgan_generator200.h5',compile=False)
 
 @app.route('/')
 
@@ -28,11 +36,16 @@ def generate():
   X = model.predict([inputs,labels])
   X = (X + 1) / 2.0
   X = (X*255).astype(np.uint8)
+  Y = []
+  for item in X:
+    result = sr.upsample(item)
+    Y.append(result)
+  Y = np.asarray(Y)
   for i in range(10*10):
     plt.axis('off')
     plt.subplot(10,10,i+1)
-    plt.imshow(X[i,:,:,:])
-  plt.savefig('/Users/amy/Desktop/ArtGAN/web/ArtGAN/static/img.png')
+    plt.imshow(Y[i,:,:,:])
+  plt.savefig('C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/static/img.png')
   plt.close('all')
   print("DONE")
   return ("nothing")
