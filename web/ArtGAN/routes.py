@@ -31,8 +31,10 @@ def home():
 @app.route('/generate')
 def generate():
   latent_dim = 100
-  [inputs,labels] = ArtGAN.process.generate_latent_points(latent_dim,100)
-  labels = np.asarray([x for _ in range(10) for x in range(10)])
+  [inputs,labels] = ArtGAN.process.generate_latent_points(latent_dim,10)
+  # labels = np.asarray([x for _ in range(10) for x in range(10)])
+  labels = np.asarray([x for x in range(10)])
+  print(labels)
   X = model.predict([inputs,labels])
   X = (X + 1) / 2.0
   X = (X*255).astype(np.uint8)
@@ -41,11 +43,11 @@ def generate():
     result = sr.upsample(item)
     Y.append(result)
   Y = np.asarray(Y)
-  for i in range(10*10):
+  for i in range(10):
     plt.axis('off')
-    plt.subplot(10,10,i+1)
-    plt.imshow(Y[i,:,:,:])
-  plt.savefig('C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/static/img.png')
+    # plt.subplot(1,10,i+1)
+    plt.imshow(Y[i])
+    plt.savefig(f'C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/static/img{i}.png')
   plt.close('all')
   print("DONE")
   return ("nothing")
