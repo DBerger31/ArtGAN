@@ -11,21 +11,34 @@ function show_image(src, width, height, alt) {
 function show_multi_image(width, height, alt) {
     var row = document.createElement("div");
     row.classList.add('row')
-    // row.style.cssText = 'position:absolute;top:300px;left:1600px;width:200px;height:200px;-moz-border-radius:100px;border:1px  solid #ddd;-moz-box-shadow: 0px 0px 8px  #fff;display:none;';
-    document.body.appendChild(row)
+    row.style.cssText =  'display: grid; grid-auto-flow: column; gap: 1px; align-items: center; justify-items: center;';
+    row.id = 'row-imgs'
+    // document.body.appendChild(row)
     for(var i=0; i <10; i++){
 
         var col = document.createElement("div");
-        col.classList.add('col-md-8')
-        col.style.cssText =  'display:none;';
+        col.id = 'col-md-8'
+        // col.style.cssText =  'display: grid; grid-auto-flow: column; gap: 4px; align-items: center; justify-items: center;';
+
         var img = document.createElement("img");
         img.src = '/static/img' + i + '.png?' + new Date().getTime();
         img.width = width;
         img.height = height;
         img.alt = alt;
         
-        document.body.appendChild(col)
-        document.body.appendChild(img);
+        col.appendChild(img)
+        row.appendChild(col)
+        // document.body.appendChild(col)
+        // document.body.appendChild(img);
     }
+    document.body.appendChild(row)
 
+}
+
+const btn = document.getElementById("test")
+function disable_button() {
+    btn.disabled = true;
+    setTimeout(()=>{
+    btn.disabled = false;
+    console.log('Button Activated')}, 5000)
 }
