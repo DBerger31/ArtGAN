@@ -13,13 +13,13 @@ from matplotlib import pyplot as plt
 import cv2
 # creates an super res object
 sr = cv2.dnn_superres.DnnSuperResImpl_create()
-path = "C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/FSRCNN_x4.pb"
+path = "/Users/amy/Desktop/ArtGAN/web/ArtGAN/FSRCNN_x4.pb"
 
 # read and creates the model
 sr.readModel(path)
 sr.setModel("fsrcnn", 4)
 
-model = load_model('C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/cgan_generator200.h5',compile=False)
+model = load_model('/Users/amy/Desktop/ArtGAN/web/ArtGAN/cgan_generator200.h5',compile=False)
 
 @app.route('/')
 
@@ -47,7 +47,7 @@ def generate():
     plt.axis('off')
     # plt.subplot(1,10,i+1)
     plt.imshow(Y[i])
-    plt.savefig(f'C:/Users/Danie/Documents/ArtGAN/web/ArtGAN/static/img{i}.png')
+    plt.savefig(f'/Users/amy/Desktop/ArtGAN/web/ArtGAN/static/img{i}.png')
   plt.close('all')
   print("DONE")
   return ("nothing")

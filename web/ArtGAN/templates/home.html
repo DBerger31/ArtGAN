@@ -38,7 +38,10 @@
       <h5 class="card-title">Create your own</h5>
       <p class="card-text">Choose a style and generate a brand new work of art.</p>
         <a href=# id=test><button class='btn btn-primary' onclick="
-        disable_button(); show_multi_image(112,112,'image');
+        var t = this; 
+        t.disabled = true; 
+        show_multi_image(112,112,'image')
+        setTimeout(function() {t.disabled = false;},7000);
 
         ">Generate</button></a>
 </div>
