@@ -1,7 +1,8 @@
-from ArtGAN import app
+import os
+from GAN import app
 from flask import render_template, request
 import flask
-import ArtGAN.process
+from GAN import process
 
 from keras.models import load_model
 import tensorflow as tf
@@ -13,13 +14,13 @@ from matplotlib import pyplot as plt
 import cv2
 # creates an super res object
 sr = cv2.dnn_superres.DnnSuperResImpl_create()
-path = "/Users/amy/Desktop/ArtGAN/web/ArtGAN/FSRCNN_x4.pb"
+path = os.path.join(os.path.dirname(__file__), '..', 'GAN', 'FSRCNN_x4.pb')
 
 # read and creates the model
 sr.readModel(path)
 sr.setModel("fsrcnn", 4)
 
-model = load_model('/Users/amy/Desktop/ArtGAN/web/ArtGAN/cgan_generator200.h5',compile=False)
+model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', 'cgan_generator200.h5'),compile=False)
 
 @app.route('/')
 
@@ -31,7 +32,7 @@ def home():
 @app.route('/generate')
 def generate():
   latent_dim = 100
-  [inputs,labels] = ArtGAN.process.generate_latent_points(latent_dim,10)
+  [inputs,labels] = process.generate_latent_points(latent_dim,10)
   # labels = np.asarray([x for _ in range(10) for x in range(10)])
   labels = np.asarray([x for x in range(10)])
   print(labels)
@@ -47,7 +48,7 @@ def generate():
     plt.axis('off')
     # plt.subplot(1,10,i+1)
     plt.imshow(Y[i])
-    plt.savefig(f'/Users/amy/Desktop/ArtGAN/web/ArtGAN/static/img{i}.png')
+    plt.savefig(os.path.join(os.path.dirname(__file__), '..', 'GAN/static', f'img{i}.png'))
   plt.close('all')
   print("DONE")
   return ("nothing")

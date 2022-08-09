@@ -1,4 +1,4 @@
-from ArtGAN import app
+from GAN import app
 from flask import render_template, request
 from keras.models import load_model
 import tensorflow as tf

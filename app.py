@@ -1,4 +1,4 @@
-from ArtGAN import app
+from GAN import app
 from flask import Flask, render_template, request
 import os
 
