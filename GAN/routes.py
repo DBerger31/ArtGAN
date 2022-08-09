@@ -35,7 +35,6 @@ def generate():
   [inputs,labels] = process.generate_latent_points(latent_dim,10)
   # labels = np.asarray([x for _ in range(10) for x in range(10)])
   labels = np.asarray([x for x in range(10)])
-  print(labels)
   X = model.predict([inputs,labels])
   X = (X + 1) / 2.0
   X = (X*255).astype(np.uint8)

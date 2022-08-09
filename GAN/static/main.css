@@ -1,0 +1,34 @@
+.navbar{
+    padding-left: 2.5%;
+}
+
+.div #img-container {
+    padding: 25px 50px 75px 100px;
+}
+
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+  }
+
+.about-description {
+height: 270px;
+text-align: center;
+background-color: #474e5d;
+color: white;
+}
+
+#about-card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+
+#about-row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
