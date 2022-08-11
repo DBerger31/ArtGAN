@@ -28,12 +28,10 @@ model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', 'cgan_ge
 def home():
     return render_template('home.html', title='ArtGAN')
 
-
 @app.route('/generate')
 def generate():
   latent_dim = 100
   [inputs,labels] = process.generate_latent_points(latent_dim,10)
-  # labels = np.asarray([x for _ in range(10) for x in range(10)])
   labels = np.asarray([x for x in range(10)])
   X = model.predict([inputs,labels])
   X = (X + 1) / 2.0

@@ -31,7 +31,7 @@
 
 <!-- CARD -->
 <p class="pb-3"></p>
-<div class="card text-center">
+<div class="card text-center" id="generate-card">
     <div class="card-header">
     </div>
     <div class="card-body">
@@ -41,8 +41,9 @@
         var t = this; 
         t.disabled = true; 
         show_multi_image(112,112,'image')
+        window.scrollTo(0, document.body.scrollHeight);
         spinner()
-        setTimeout(function() {t.disabled = false; spinner() },7000);
+        setTimeout(function() {t.disabled = false; spinner(); },7000);
 
         ">Generate
       <span class="spinner-border spinner-border-sm" id = "spinner-border spinner-border-sm" role="status" aria-hidden="true" style = "display: none; float: right; margin-left: 10px; margin-top: 4px;" ></span>
