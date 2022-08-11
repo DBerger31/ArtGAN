@@ -45,7 +45,7 @@ def generate():
     plt.axis('off')
     # plt.subplot(1,10,i+1)
     plt.imshow(Y[i])
-    plt.savefig(os.path.join(os.path.dirname(__file__), '..', 'GAN/static', f'img{i}.png'))
+    plt.savefig(os.path.join(os.path.dirname(__file__), '..', 'GAN/static', f'img{i}.png'), transparent=True)
   plt.close('all')
   print("DONE")
   return ("nothing")
