@@ -24,7 +24,7 @@ def load_custom_data():
     y = np.loadtxt('labels.txt')
     return x, y
 
-# trainX, trainy = load_custom_data() # shape of (62145, 64, 64, 3) and (62145,)
+trainX, trainy = load_custom_data() # shape of (62145, 64, 64, 3) and (62145,)
 
 # plot the first 25 images of our dataset 
 # for i in range(25):
