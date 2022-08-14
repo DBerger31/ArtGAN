@@ -10,3 +10,4 @@ __pycache__/
 images.npy
 labels.txt
 mod.h5
+*.png
