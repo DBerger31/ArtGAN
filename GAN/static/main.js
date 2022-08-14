@@ -44,7 +44,7 @@ function show_5_image(width, height, alt) {
       var col = document.createElement("div");
       col.id = 'col-md-8'
       var img = document.createElement("img");
-      img.src = 'static/smalldata/img' + i + '.png?' + new Date().getTime();
+      img.src = '/static/smalldata/img' + i + '.png?' + new Date().getTime();
       img.width = width;
       img.height = height;
       img.alt = alt;
