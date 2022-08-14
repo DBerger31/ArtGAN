@@ -21,14 +21,17 @@ sr.readModel(path)
 sr.setModel("fsrcnn", 4)
 
 @app.route('/')
-
 @app.route('/home')
 def home():
-    return render_template('home.html', title='ArtGAN')
+  return render_template('home.html', title='ArtGAN')
 
-@app.route('/othergan')
-def othergan():
-    return render_template('othergan.html', title='ArtGAN')
+@app.route('/tenstyles')
+def tenart():
+    return render_template('tenart.html', title='ArtGAN')
+
+@app.route('/fivestyles')
+def fivestyles():
+    return render_template('fiveart.html', title='ArtGAN')
 
 @app.route('/generate')
 def generate():
