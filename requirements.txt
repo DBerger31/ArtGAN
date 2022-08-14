@@ -2,3 +2,4 @@ flask
 tensorflow-cpu
 gunicorn
 matplotlib
+opencv-contrib-python-headless
