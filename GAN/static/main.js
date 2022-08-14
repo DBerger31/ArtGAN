@@ -33,6 +33,31 @@ function show_multi_image(width, height, alt) {
 
 }
 
+function show_5_image(width, height, alt) {
+  var row = document.createElement("div");
+  row.classList.add('row')
+  row.style.cssText =  'display: grid; grid-auto-flow: column; gap: 1px; align-items: center; justify-items: center; padding-bottom: 10px';
+  row.id = 'row-imgs'
+  // document.body.appendChild(row)
+  for(var i=0; i <5; i++){
+
+      var col = document.createElement("div");
+      col.id = 'col-md-8'
+      var img = document.createElement("img");
+      img.src = 'static/smalldata/img' + i + '.png?' + new Date().getTime();
+      img.width = width;
+      img.height = height;
+      img.alt = alt;
+      
+      col.appendChild(img)
+      row.appendChild(col)
+      // document.body.appendChild(col)
+      // document.body.appendChild(img);
+  }
+  document.body.appendChild(row)
+
+}
+
 const btn = document.getElementById("test")
 function disable_button() {
     btn.disabled = true;

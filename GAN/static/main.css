@@ -26,6 +26,8 @@ color: white;
     margin-bottom: 10px; /* Added */
     padding-left: 50px;
     padding-bottom: 50px;
+    height: 200px;
+    width: 50%;
 }
 
 #about-row {
@@ -37,7 +39,7 @@ body {
     background-color: #cccccc;
    }
 
-.card-body {
+#create {
     background-color: #cccccc;
 }
 

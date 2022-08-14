@@ -20,16 +20,19 @@ path = os.path.join(os.path.dirname(__file__), '..', 'GAN', 'FSRCNN_x4.pb')
 sr.readModel(path)
 sr.setModel("fsrcnn", 4)
 
-model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', 'cgan_generator200.h5'),compile=False)
-
 @app.route('/')
 
 @app.route('/home')
 def home():
     return render_template('home.html', title='ArtGAN')
 
+@app.route('/othergan')
+def othergan():
+    return render_template('othergan.html', title='ArtGAN')
+
 @app.route('/generate')
 def generate():
+  model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', 'cgan_generator200.h5'),compile=False)
   latent_dim = 100
   [inputs,labels] = process.generate_latent_points(latent_dim,10)
   labels = np.asarray([x for x in range(10)])
@@ -45,11 +48,33 @@ def generate():
     plt.axis('off')
     # plt.subplot(1,10,i+1)
     plt.imshow(Y[i])
-    plt.savefig(os.path.join(os.path.dirname(__file__), '..', 'GAN/static', f'img{i}.png'), transparent=True)
+    plt.savefig(os.path.join(os.path.dirname(__file__), '..', 'GAN/static', f'img{i}.png'), facecolor='#e1e1e1', pad_inches=0)
   plt.close('all')
   print("DONE")
   return ("nothing")
 
+@app.route('/generate2')
+def generate2():
+  model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', '300_mod.h5'),compile=False)
+  latent_dim = 100
+  [inputs,labels] = process.generate_latent_points(latent_dim,5)
+  labels = np.asarray([x for x in range(5)])
+  X = model.predict([inputs,labels])
+  X = (X + 1) / 2.0
+  X = (X*255).astype(np.uint8)
+  Y = []
+  for item in X:
+    result = sr.upsample(item)
+    Y.append(result)
+  Y = np.asarray(Y)
+  for i in range(5):
+    plt.axis('off')
+    # plt.subplot(1,10,i+1)
+    plt.imshow(Y[i])
+    plt.savefig(os.path.join(os.path.dirname(__file__), '..', 'GAN/static/smalldata', f'img{i}.png'), facecolor='#e1e1e1', pad_inches=0)
+  plt.close('all')
+  print("DONE")
+  return ("nothing")
 
 @app.route('/about')
 def about():
