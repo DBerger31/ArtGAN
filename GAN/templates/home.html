@@ -1,1 +1,56 @@
 {% extends 'layouts.html' %}
+
+{%block content%}
+<p class="pt-3"></p>
+<div class="container-lg">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-cat-rob-hans.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://i.pinimg.com/originals/8e/99/69/8e9969e9e048661aa9beab4c0bfea553.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://m.media-amazon.com/images/I/A1AQSOLmbqL._AC_SL1500_.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<div class="row" id = 'row-home'>
+    <div class="col-sm-6" id ='col-home'>
+      <div class="card" id ='card-home'>
+        <div class="card-body">
+          <h5 class="card-title">Ten Style GAN</h5>
+          <p class="card-text">This model has been trained with a dataset of 10 art styles:</p>
+          <p> Abstract, Cityscape, Genre Painting, Illustration, Landscape, Portrait, Religious Painting, Sketch and Study, Still Life, Symbolic Painting </p>
+          <div class="btn-container">
+            <a href="/tenstyles" class="btn btn-outline-dark" id = "tenbutton">Go to 10GAN</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" id ='col-home'>
+      <div class="card" id ='card-home'>
+        <div class="card-body">
+          <h5 class="card-title">Five Style GAN</h5>
+          <p class="card-text">This model has been trained with a dataset of 5 art styles:</p>
+          <p> Abstract, Landscape, Portrait, Religious Painting, Sketch and Study </p>
+          <div class="btn-container">
+            <a href="/fivestyles" class="btn btn-outline-dark" id = "fivebutton">Go to 5GAN</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{%endblock content%}

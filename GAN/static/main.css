@@ -58,3 +58,37 @@ h5 {
 .card-text {
     font-family: Comic Sans MS, Comic Sans, cursive;
 }
+
+#row-home {
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#col-home {
+    padding-bottom: 20px;
+}
+#card-home{
+    height: 300px;
+    width: 500px;
+}
+
+#tenbutton {
+    position: absolute;
+    bottom: 10px;
+    height: 100px;
+    padding-top: 35px;
+    width: 93%;
+    border: 2px solid black;
+}
+
+#fivebutton {
+    position: absolute;
+    bottom: 10px;
+    height: 100px;
+    padding-top: 35px;
+    width: 93%;
+    border: 2px solid black;
+}
