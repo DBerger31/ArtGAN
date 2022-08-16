@@ -35,7 +35,7 @@ def fivestyles():
 
 @app.route('/generate')
 def generate():
-  model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', 'cgan_generator200.h5'),compile=False)
+  model = load_model(os.path.join(os.path.dirname(__file__), '..', 'GAN', 'cgan_generator500.h5'),compile=False)
   latent_dim = 100
   [inputs,labels] = process.generate_latent_points(latent_dim,10)
   labels = np.asarray([x for x in range(10)])
