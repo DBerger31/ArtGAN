@@ -7,7 +7,4 @@ __pycache__/
 
 # CSV files
 *.csv/
-images.npy
-labels.txt
-mod.h5
-*.png
+

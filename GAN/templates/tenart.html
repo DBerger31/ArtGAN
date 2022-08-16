@@ -1,0 +1,115 @@
+{% extends 'layouts.html' %}
+
+{%block content%}
+<!-- <h1>Home page</h1> -->
+
+<!-- CAROUSEL image slideshow -->
+<p class="pt-3"></p>
+<div class="container-lg">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/starry-cat-rob-hans.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://i.pinimg.com/originals/8e/99/69/8e9969e9e048661aa9beab4c0bfea553.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://m.media-amazon.com/images/I/A1AQSOLmbqL._AC_SL1500_.jpg" class="d-block w-100" height="500" alt="...">
+        </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<!-- CARD -->
+<p class="pb-3"></p>
+<div class="card text-center" id="generate-card">
+    <div class="card-header">
+    </div>
+    <div class="card-body" id = "create">
+      <h5 class="card-title">Create your own</h5>
+      <p class="card-text" style="margin: 0;">Choose a style and generate a brand new work of art</p>
+      <p class="card-text">Wait 7 seconds before generating more images</p>
+        <a href=# id=test><button class='btn btn-primary' onclick="
+        var t = this; 
+        t.disabled = true; 
+        show_multi_image(112,112,'image')
+        window.scrollTo(0, document.body.scrollHeight);
+        spinner()
+        setTimeout(function() {t.disabled = false; spinner(); },7000);
+
+        ">Generate
+      <span class="spinner-border spinner-border-sm" id = "spinner-border spinner-border-sm" role="status" aria-hidden="true" style = "display: none; float: right; margin-left: 10px; margin-top: 4px;" ></span>
+      </button></a>
+
+</div>
+
+</div>
+
+    <div class="card-footer text-muted">
+      <div class="container">
+    </div>
+  </div>
+  <div class="row" style = "left:0; margin-left: 0px; margin-right: 20px; padding-top: 10px;">
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Abstract</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Cityscape</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Genre painting</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Illustration</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Landscape</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Portrait</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Religious Painting</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Sketch and Study</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Still Life</h4>
+    </div>
+    <div class="col" id = img-container style = "margin:0 0px">
+      <h4>Symbolic Painting</h4>
+    </div>
+  </div>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#test').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/generate',
+                function(data) {
+                    
+            });
+            return false;
+          });
+        });
+</script>
+
+
+
+<script src = "{{url_for('static',filename='main.js')}}"></script> 
+
+
+{%endblock content%}

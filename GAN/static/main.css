@@ -1,0 +1,94 @@
+.navbar{
+    padding-left: 2.5%;
+}
+
+.div #img-container {
+    padding: 25px 50px 75px 100px;
+}
+
+.about-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+  }
+
+.about-description {
+height: 270px;
+text-align: center;
+background-color: #474e5d;
+color: white;
+}
+
+#about-card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    padding-left: 50px;
+    padding-bottom: 50px;
+    height: 200px;
+    width: 50%;
+}
+
+#about-row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+body {
+    background-color: #cccccc;
+   }
+
+#create {
+    background-color: #cccccc;
+}
+
+.card-header {
+    background-color: #0a0a0a;
+}
+
+h4 {
+    font-family: Marker Felt, fantasy;
+}
+
+h5 {
+    font-family: Impact, fantasy;
+}
+
+.card-text {
+    font-family: "Franklin Gothic Medium";
+}
+
+#row-home {
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#col-home {
+    padding-bottom: 20px;
+}
+#card-home{
+    height: 300px;
+    width: 500px;
+}
+
+#tenbutton {
+    position: absolute;
+    bottom: 10px;
+    height: 100px;
+    padding-top: 35px;
+    width: 93%;
+    border: 2px solid black;
+}
+
+#fivebutton {
+    position: absolute;
+    bottom: 10px;
+    height: 100px;
+    padding-top: 35px;
+    width: 93%;
+    border: 2px solid black;
+}
