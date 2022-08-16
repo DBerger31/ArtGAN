@@ -1,0 +1,50 @@
+{% extends 'layouts.html' %}
+
+{%block content%}
+<div class="about-section">
+    <h1>About Us Page</h1>
+  </div>
+  <div class = team>
+    <h2 style="text-align:center; padding-top: 50px;">Our Team</h2>
+    <div class="row" id = about-row>
+        <div class="col">
+            <div class="card" id = "about-card" style="width: 26rem;">
+                <h1 style = "padding-left: 30px;">Amy</h1>
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="https://github.com/amy-tse">Click for Github</a>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col">
+            <div class="card" id = "about-card" style="width: 26rem;">
+                <h1 style = "padding-left: 30px;">Anthony</h1>
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="https://github.com/anthony-b1">Click for Github</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" id = "about-card" style="width: 26rem;">
+                <h1 style = "padding-left: 30px;">Daniel Berger</h1>
+                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                <div class="card-body">
+                <p class="card-text">College Student with Python, C++, and JavaScript Knowledge.</p>
+                <a href="https://github.com/Dberger31">Click for Github</a>
+                </div>
+            </div>
+    </div>
+  </div>
+  
+<div class="about-description" style="padding-top: 20px;">
+    <h1>Working with GANs</h1>
+    <p style = 'margin: 0;padding: 0;'>This is an AI art generator using the 10 different painting styles. 
+    We use two models one that is custom built with keras called a conditional generative adverserial network (cgan).</p>
+    <p>The other model is called super resolution. We use the super resolution model to upscale our images from 28x28 to 112x112 for clarity.</p>
+</div>
+
+{%endblock content%}
