@@ -9,32 +9,39 @@
     <div class="row" id = about-row>
         <div class="col">
             <div class="card" id = "about-card" style="width: 26rem;">
-                <h1 style = "padding-left: 30px;">Amy</h1>
+                <h1 style = "padding-top: 10px; padding-left: 10px;">Amy Tse</h1>
                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                 <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="https://github.com/amy-tse">Click for Github</a>
+                <p class="card-text">Computer Science Student at Hunter College<br>
+                Python, C++, JavaScript</p>
+                <a href="https://github.com/amy-tse" target="_blank"> <img alt="Click for Github" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                    width=50" height="50">
+                </a>
                 </div>
             </div>
         </div>
     
         <div class="col">
             <div class="card" id = "about-card" style="width: 26rem;">
-                <h1 style = "padding-left: 30px;">Anthony</h1>
+                <h1 style = "padding-top: 10px; padding-left: 10px;">Anthony Bi</h1>
                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                 <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="https://github.com/anthony-b1">Click for Github</a>
+                <p class="card-text">Hunter College Student<br>
+                    Languages: Python, C++, HTML, CSS, JS<br>
+                    Interests: Data science, Cryptography, Web Dev</p>
+                <a href="https://github.com/anthony-b1" target="_blank"><img alt="Click for Github" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                    width=50" height="50"></a>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card" id = "about-card" style="width: 26rem;">
-                <h1 style = "padding-left: 30px;">Daniel Berger</h1>
+                <h1 style = "padding-top: 10px; padding-left: 10px;">Daniel Berger</h1>
                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                 <div class="card-body">
-                <p class="card-text">College Student with Python, C++, and JavaScript Knowledge.</p>
-                <a href="https://github.com/Dberger31">Click for Github</a>
+                <p class="card-text">Hunter College Student with Python, C++, and JavaScript Knowledge.</p>
+                <a href="https://github.com/Dberger31" target="_blank" ><img alt="Click for Github" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                    width=50" height="50"></a>
                 </div>
             </div>
     </div>
@@ -42,9 +49,7 @@
   
 <div class="about-description" style="padding-top: 20px;">
     <h1>Working with GANs</h1>
-    <p style = 'margin: 0;padding: 0;'>This is an AI art generator using the 10 different painting styles. 
-    We use two models one that is custom built with keras called a conditional generative adverserial network (cgan).</p>
-    <p>The other model is called super resolution. We use the super resolution model to upscale our images from 28x28 to 112x112 for clarity.</p>
+    <p style = 'margin: 0;padding: 0;'>This AI art generator was built using Conditional Generative Adversarial Networks and the Keras framework. After our trained generator model produces images, we use OpenCV super resolution model to upscale our images for clarity. For more information about this project and to view the code, visit our <a href="https://github.com/DBerger31/ArtGAN" target="_blank" style="color:#ffffff;">GitHub</a>.</p>
 </div>
 
 {%endblock content%}
