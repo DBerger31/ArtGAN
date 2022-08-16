@@ -1,4 +1,4 @@
-ArtGAN: Art Generation Using Conditional Generative Adversarial Networks
+**ArtGAN: Art Generation Using Conditional Generative Adversarial Networks**
 
 A user can generate art on our web app either based on five or ten different art styles at https://art-gan.herokuapp.com/
 We used a keras framework to create two similar GAN models that effectively learn to classify different styles of art and produce art of a similar style.
@@ -9,15 +9,15 @@ If you would like to test our model in the model folder we have various versions
 The most recent functioning model that should be tested is the file named artgan.py
 
 The requirements you will need is:
-flask
-tensorflow-cpu
-gunicorn
-matplotlib
-opencv-contrib-python-headless
+
+tensorflow-cpu <br />
+matplotlib <br />
+opencv-contrib-python-headless <br />
+numpy <br />
 
 Along with a link to download our images.npy that can be found here _______________.
 
-Team Members:
-Amy Tse
-Anthony Bi
-Daniel Berger
+Team Members:<br />
+Amy Tse<br />
+Anthony Bi<br />
+Daniel Berger<br />
