@@ -1,3 +1,5 @@
+"""This file contains the routing system of the web app, as well as the function to load and generate images"""
+
 import os
 from GAN import app
 from flask import render_template, request

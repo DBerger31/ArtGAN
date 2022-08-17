@@ -1,4 +1,5 @@
-# Load dataset into keras and displaying images from the batches
+"""Load dataset into keras and displaying images from the batches"""
+
 from subprocess import SubprocessError
 from turtle import color
 import numpy as np

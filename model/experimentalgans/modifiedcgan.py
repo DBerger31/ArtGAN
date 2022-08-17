@@ -1,3 +1,5 @@
+"""Experimental cGAN with slight modifications"""
+
 from numpy import zeros
 from numpy import ones
 from numpy.random import randn

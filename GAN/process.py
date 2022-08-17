@@ -1,3 +1,5 @@
+"""This file contains the function to generate latent points for the loaded generator model to generate new images"""
+
 from GAN import app
 from flask import render_template, request
 from keras.models import load_model

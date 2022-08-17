@@ -1,5 +1,6 @@
-# Dataset: https://www.kaggle.com/c/painter-by-numbers
-# Using annotated csv file to separate img files to their own directories 
+"""Dataset: https://www.kaggle.com/c/painter-by-numbers
+Using annotated csv file to separate img files to their own directories """
+
 import pandas as pd 
 import os
 import os.path

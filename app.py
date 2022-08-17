@@ -1,3 +1,5 @@
+"""This file runs the web application"""
+
 from GAN import app
 from flask import Flask, render_template, request
 import os

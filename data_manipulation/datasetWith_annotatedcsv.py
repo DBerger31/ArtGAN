@@ -1,3 +1,5 @@
+"""This file reads in the dataset with annotated csv"""
+
 import pandas as pd 
 import tensorflow as tf
 from tensorflow import keras

@@ -1,4 +1,5 @@
-# Making images.npy and labels.txt
+"""This file creates images.npy and labels.txt from the Kaggle dataset to be used in the model"""
+
 import PIL
 import os
 import os.path

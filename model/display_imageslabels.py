@@ -1,3 +1,5 @@
+"""This file contains the functions to load in the dataset and display images from the dataset"""
+
 import matplotlib.pyplot as plt 
 import numpy as np 
 

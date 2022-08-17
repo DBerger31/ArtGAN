@@ -1,4 +1,5 @@
-# Based on a .csv file get top 10 genres and use the filename to put them all in one folder
+"""This file collects the top 10 genres and uses the filename to put them all in one folder"""
+
 import pandas as pd
 import os
 import os.path

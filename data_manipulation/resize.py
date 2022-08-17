@@ -1,3 +1,5 @@
+"""This file contains a function that resizes the images to prep for use in the model"""
+
 import PIL
 import os
 import os.path

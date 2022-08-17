@@ -1,3 +1,5 @@
+"""This file loads in the trained generator model, and generates new images."""
+
 from artgan import generate_latent_points
 
 # Load the trained model and generate a few images

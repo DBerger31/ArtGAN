@@ -1,4 +1,5 @@
-# Resize all images from a folder to a specific dimension
+"""This file resizes all images from a folder to a specific dimension"""
+
 import PIL
 import os
 import os.path
