@@ -257,7 +257,7 @@ def plot_losses():
 
 [inputs,labels] = generate_latent_points(latent_dim,25)
 labels = np.asarray([x for _ in range(5) for x in range(5)])
-model = load_model('300drop_mod.h5')
+model = load_model('model/300_mod.h5')
 X = model.predict([inputs,labels])
 X = (X + 1) / 2.0
 X = (X*255).astype(np.uint8)
