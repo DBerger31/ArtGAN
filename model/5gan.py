@@ -232,7 +232,13 @@ dataset = load_real_samples()
 
 train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=300)
 
+genres = ['Abstract', 'Landscape', 'Religious\nPainting', 'Portrait', 'Sketch and Study']
+
 def save_plot(X,n):
+  for i in range(n):
+    print(i)
+    plt.subplot(n, n, 1 + i)
+    plt.text(14, -5, genres[i], fontsize = 12, ha='center')
   for i in range(n*n):
     plt.axis('off')
     plt.subplot(n,n,i+1)
@@ -248,7 +254,6 @@ def plot_losses():
   plt.ylabel("Loss")
   plt.legend()
   plt.show()
-
 
 [inputs,labels] = generate_latent_points(latent_dim,25)
 labels = np.asarray([x for _ in range(5) for x in range(5)])
