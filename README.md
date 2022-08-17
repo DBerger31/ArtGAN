@@ -6,8 +6,11 @@ In addition to upscaling the images with Super Resolution from OpenCV.
 The Five style generator produces 192x192 images and the Ten style generator produces 112x112.
 
 The easiest method of running our model would be to visit our google colab and follow the steps displayed. <br />
+<br />
 https://colab.research.google.com/drive/1iX-hwK225jQ6f675gREH5UeihO8WlALJ?usp=sharing for Ten Styles <br />
-
+<br />
+https://colab.research.google.com/drive/1DV2Nx4ENeDwSNi-4ClcJrJa_7gVpi-RN?usp=sharing for Five Styles <br />
+<br />
 Otherwise, <br />
 
 If you would like to test our model in the model folder we have various versions of the model that can be tested.

@@ -223,7 +223,7 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=1, n_batch=
       g_losses.append(g_loss)
       print('Epoch>%d, Batch%d/%d, d1=%.3f, d2=%.3f g=%.3f' %
         (i+1, j+1, bat_per_epo, d_loss_real, d_loss_fake, g_loss))
-  g_model.save('300drop_mod.h5')
+  g_model.save('model/300_mod.h5')
 
 # Parameters
 latent_dim = 100

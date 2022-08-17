@@ -213,7 +213,7 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=1, n_batch=
       g_losses.append(g_loss)
       print('Epoch>%d, Batch%d/%d, d1=%.3f, d2=%.3f g=%.3f' %
         (i+1, j+1, bat_per_epo, d_loss_real, d_loss_fake, g_loss))
-  g_model.save('mod.h5')
+  g_model.save('model/cgan_generator500.h5')
 
 
 # Parameters
@@ -247,7 +247,7 @@ def plot_losses():
 
 [inputs,labels] = generate_latent_points(latent_dim,100)
 labels = np.asarray([x for _ in range(10) for x in range(10)])
-model = load_model('mod.h5')
+model = load_model('model/cgan_generator500.h5')
 X = model.predict([inputs,labels])
 X = (X + 1) / 2.0
 X = (X*255).astype(np.uint8)
