@@ -15,7 +15,9 @@ matplotlib <br />
 opencv-contrib-python-headless <br />
 numpy <br />
 
-Along with a link to download our images.npy that can be found here _______________.
+Along with a link to download our images.npy that can be found here https://drive.google.com/drive/folders/1qhJqeMZ4mnuZ-sxyVM18zKXg5HJDp01O.
+
+The easiest method of running our model would probably be deploying the server locally or visting or website directly. <br />
 
 Team Members:<br />
 Amy Tse<br />
