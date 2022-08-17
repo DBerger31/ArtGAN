@@ -111,13 +111,13 @@ def define_generator(latent_dim, n_classes=5):
     # merge image gen and label input
     merge = Concatenate()([gen, li]) 
 
-    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(merge) #32x32x128
+    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(merge) #16x16x128
     gen = LeakyReLU(alpha=0.2)(gen)
 
-    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 , decreased filter from 128 -> 64
+    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #32x32x128  
     gen = LeakyReLU(alpha=0.2)(gen)
 
-    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 , decreased filter from 128 -> 64
+    gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128 
     gen = LeakyReLU(alpha=0.2)(gen)
     
     # output
