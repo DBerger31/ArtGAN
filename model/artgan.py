@@ -1,4 +1,4 @@
-"""10-style cGAN model"""
+"""10-style cGAN model for 28x28 images"""
 
 from numpy import zeros
 from numpy import ones
@@ -42,20 +42,20 @@ Creates the discriminator model using keras functional API
 Arg1: Shape of the discriminator input
 Arg2: Number of classes the dataset has
 '''
-def define_discriminator(in_shape=(64,64,3), n_classes=10):
+def define_discriminator(in_shape=(28,28,3), n_classes=10):
 	
 	in_label = Input(shape=(1,)) # the label input
 
 	# embedding layer added to create a vector of size 50 for each label we have (random values that acts as another set of weights)
 	li = Embedding(n_classes, 50)(in_label) 
  
-	li = Dense(in_shape[0] * in_shape[1])(li) # 64 x 64 = 4096
+	li = Dense(in_shape[0] * in_shape[1])(li) # 28 x 28 = 784
 
 	li = Reshape((in_shape[0], in_shape[1], 1))(li) # converts our dense layer to a shape of 64x64x1
     
-	in_image = Input(shape=in_shape) # our image input is 64x64x1
+	in_image = Input(shape=in_shape) # our image input is 28x28x1
 
-	merge = Concatenate()([in_image, li]) # merges the 2 input layers -> 64 x 64 x 4
+	merge = Concatenate()([in_image, li]) # merges the 2 input layers -> 28 x 28 x 4
     
 	fe = Conv2D(128, (3,3), strides=(2,2), padding='same')(merge) 
 	fe = LeakyReLU(alpha=0.2)(fe)
@@ -89,34 +89,34 @@ def define_generator(latent_dim, n_classes=10):
     # embedding layer added to create a vector of size 50 for each label we have (random values that acts as another set of weights)
 	li = Embedding(n_classes, 50)(in_label) 
     
-	n_nodes = 16 * 16  # we need this number to be a factor of the image dimensions
+	n_nodes = 7* 7  # we need this number to be a factor of the image dimensions
 	li = Dense(n_nodes)(li)
-	li = Reshape((16, 16, 1))(li)
+	li = Reshape((7, 7, 1))(li)
     
     
 	# latent vector input with dimension of 100, which is standard
 	in_lat = Input(shape=(latent_dim,)) 
     
 
-	n_nodes = 128 * 16 * 16
+	n_nodes = 128 * 7 * 7
 	gen = Dense(n_nodes)(in_lat) 
 	gen = LeakyReLU(alpha=0.2)(gen)
-	gen = Reshape((16, 16, 128))(gen) 
+	gen = Reshape((7, 7, 128))(gen) 
 	# merge image gen and label input
 	merge = Concatenate()([gen, li]) 
 
-	gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(merge) #32x32x128
+	gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(merge) #14x14x128
 	gen = LeakyReLU(alpha=0.2)(gen)
 
-	gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #64x64x128
+	gen = Conv2DTranspose(128, (4,4), strides=(2,2), padding='same')(gen) #28x28x128
 	gen = LeakyReLU(alpha=0.2)(gen)
 	# output
-	out_layer = Conv2D(3, (16,16), activation='tanh', padding='same')(gen) #64x64x3
+	out_layer = Conv2D(3, (7,7), activation='tanh', padding='same')(gen) #28x28x3
 	# define model
 	model = Model([in_lat, in_label], out_layer)
 	return model   # Model is not compiled becuase it is only trained within the GAN
 
-# test_gen = define_generator(100, n_classes=10)
+test_gen = define_generator(100, n_classes=10)
 
 def define_gan(g_model, d_model):
 	d_model.trainable = False  # discriminator is trained seperately
@@ -213,7 +213,7 @@ def train(g_model, d_model, gan_model, dataset, latent_dim, n_epochs=1, n_batch=
       g_losses.append(g_loss)
       print('Epoch>%d, Batch%d/%d, d1=%.3f, d2=%.3f g=%.3f' %
         (i+1, j+1, bat_per_epo, d_loss_real, d_loss_fake, g_loss))
-  g_model.save('10_mod.h5')
+  g_model.save('mod.h5')
 
 
 # Parameters

@@ -1,4 +1,4 @@
-"""5-style cGAN model"""
+"""5-style cGAN model for 64x64 images"""
 
 from numpy import zeros
 from numpy import ones
